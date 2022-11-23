@@ -1,0 +1,55 @@
+class Solution {
+    public String minNumber(int[] nums) {
+        boolean swapped = true;
+        int last = nums.length - 1;
+        int local = last;
+        while(swapped){
+            swapped = false;
+
+            for(int i = 0 ;i<last;i++){
+                if((""+nums[i]+nums[i+1]).compareTo(""+nums[i+1]+nums[i])>0){
+                    swap(nums,i,i+1);
+                    local  = i;
+                    swapped = true;
+                }
+            }
+        last = local;       
+        }
+
+      
+        return Arrays.toString(nums).replaceAll("\\[|,|\\]|\\s| ","");
+    }
+    public void swap(int[] nums,int i,int j){
+        int a = nums[i];
+        nums[i]  = nums[j];
+        nums[j] =  a;
+    } 
+}
+
+class Solution {
+    public String minNumber(int[] nums) {
+        //boolean swapped = true;
+        for(int i = 0;i<nums.length-1;i++)                         
+            for(int j = i +1 ;j<nums.length;j++)
+                if(cmp(nums[i],nums[j])>0 )
+                    swap(nums, i ,j);               
+              
+         StringBuilder res = new StringBuilder();
+        for(int a : nums){
+            res.append(a);
+        }           
+        return res.toString();
+    }
+    public void swap(int[] nums,int i,int j){
+        int a = nums[i];
+        nums[i]  = nums[j];
+        nums[j] =  a;
+    }
+    public int  cmp(int a , int b){
+        StringBuilder str1 = new StringBuilder();
+        StringBuilder str2 = new StringBuilder();
+        str1.append(a);str1.append(b);
+        str2.append(b);str2.append(a);
+        return str1.compareTo(str2);        
+    }
+}
