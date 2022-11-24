@@ -1,0 +1,18 @@
+# Javalearn
+class Solution {
+    public int[][] merge(int[][] intervals) {
+            Arrays.sort(intervals,(a,b) -> a[0]==b[0]?a[1]-b[1]:a[0]-b[0]);
+            List<int[]> res = new ArrayList<>();//有点意思
+            int [] tem = intervals[0];//临时变量
+            for(int i= 1;i<intervals.length;i++){
+                if(intervals[i][0]<=tem[1])
+                    tem[1]=Math.max(tem[1],intervals[i][1]);
+                else{
+                    res.add(tem);
+                    tem = intervals[i];
+                }
+            }
+            res.add(tem);
+            return res.toArray(new int[res.size()][2]);
+    }
+}
